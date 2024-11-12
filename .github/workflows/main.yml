@@ -32,7 +32,10 @@ jobs:
     - name: Deploy to VPS
       run: |
         ssh -p 222 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
-          cd /root/redirect  # Change to your application path
+          if [ ! -d "/root/redirect" ]; then
+            mkdir -p /root/redirect  # สร้าง directory /root/redirect ถ้ายังไม่มี
+          fi
+          cd /root/redirect
           if [ ! -d ".git" ]; then
             git clone https://github.com/attane007/redirect.git .  # ทำการ clone repository
           fi

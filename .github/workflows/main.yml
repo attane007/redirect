@@ -33,7 +33,7 @@ jobs:
       run: |
         ssh -p 222 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
           cd /redirect/redirect  # Change to your application path
-          git pull origin main   # Pull the latest changes
+          git pull origin master   # Pull the latest changes
           pip install -r requirements.txt  # Install any dependencies
           systemctl restart redirect.service  # Restart FastAPI service
         EOF
